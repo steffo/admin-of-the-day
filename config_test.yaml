@@ -1,0 +1,32 @@
+team:
+  alice:
+    unavailable:
+      default:
+        - monday
+        - tuesday
+    holidays:
+      - 20160101
+      - 20160102
+  
+  bob:
+    unavailable:
+      odd_week:
+        - wednesday
+        - thursday
+      even_week:
+        - monday
+  chris:
+    unavailable:
+    holidays:
+      - 20160101
+
+  debby:
+    unavailable:
+      default:
+        - friday
+    holidays:
+      - 20160125
+     
+holidays:
+  - 20161225 # x-mas
+  - 20161226 # x-mas
