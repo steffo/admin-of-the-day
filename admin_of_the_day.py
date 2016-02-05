@@ -10,14 +10,14 @@ import team
 # - Gegevens eerdere maanden meenemen
 
 
-def create_schedule(team, workdate):
+def create_schedule(team, holidays, workdate):
     schedule = {}
-
     for i in range(1, monthrange(workdate.year, workdate.month)[1]+1):
         # Loop through days
         workday = workdate.replace(day=i)
 
-        if workday.weekday() >= 0 and workday.weekday() < 5:
+        if workday.weekday() >= 0 and workday.weekday() < 5 \
+                and workday not in holidays:
             member = get_next_member(workday, team)
             schedule[workday.day] = member.name
 
@@ -56,12 +56,13 @@ def parse_arguments():
 args = parse_arguments()
 
 workdate = date(args.year, args.month, 1)
+holidays = team.get_holidays(args.inputfile)
 
 print("\nCreating schedule for %s\n\n" % str(workdate))
 # team = member.init_team(workdate)
 myteam = team.get_team(args.inputfile)
 
-schedule = create_schedule(myteam, workdate)
+schedule = create_schedule(myteam, holidays, workdate)
 
 print("Assignment per team member\n")
 for m in myteam:
