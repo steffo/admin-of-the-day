@@ -63,3 +63,5 @@ target/
 
 #vim python ide
 .ropeproject/
+
+*.swp
