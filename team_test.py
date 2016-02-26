@@ -25,7 +25,7 @@ class TeamTest(unittest.TestCase):
         result = team._init_team(doc)
 
         self.assertIsNotNone(result)
-        self.assertEqual(len(result), 4)
+        self.assertEqual(len(result), 5)
 
         for member in result:
             if member.name == 'alice':
@@ -57,3 +57,6 @@ class TeamTest(unittest.TestCase):
             elif member.name == 'debby':
                 result = team.check_availability(self.workdate, member)
                 self.assertTrue(result)
+            elif member.name == 'dude':
+                result = team.check_availability(self.workdate, member)
+                self.assertFalse(result)

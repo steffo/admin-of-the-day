@@ -34,8 +34,12 @@ def _init_team(doc):
         holidays = []
         if 'unavailable' in data:
             unavail = data['unavailable']
+        else:
+            unavail = []
         if 'holidays' in data:
             holidays = data['holidays']
+        else:
+            holidays = []
 
         members.append(Member(name, unavail, holidays))
 
@@ -87,9 +91,10 @@ def check_availability(workdate, member):
             if available is not None:
                 break
 
-    # TODO Check holidays
     if available is None and member.holidays is not None:
         available = _check_holidays(workdate, member)
+    else:
+        available = True
 
     return available
 

@@ -27,9 +27,16 @@ def create_schedule(team, holidays, workdate):
 def get_next_member(workday, myteam):
     valid = False
     notvalid = []
+
     # Retreive next of list and reshuffle list
     while (valid is False):
-        member = myteam.popleft()
+        if len(myteam)<1:
+            print("No availability")
+            return
+        try:
+            member = myteam.popleft()
+        except IndexError:
+            print("Got Error")
         # Check if member is available
         if not team.check_availability(workday, member):
             notvalid.append(member)
@@ -62,6 +69,8 @@ print("\nCreating schedule for %s\n\n" % str(workdate))
 # team = member.init_team(workdate)
 myteam = team.get_team(args.inputfile)
 
+print( team )
+print( team.get_team )
 schedule = create_schedule(myteam, holidays, workdate)
 
 print("Assignment per team member\n")

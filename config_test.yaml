@@ -1,4 +1,9 @@
 team:
+  
+  dude:
+    unavailable:
+    holidays:
+
   alice:
     unavailable:
       default:
@@ -25,7 +30,7 @@ team:
       default:
         - friday
     holidays:
-      - 20160125
+      - 20160124
      
 holidays:
   - 20161225 # x-mas
