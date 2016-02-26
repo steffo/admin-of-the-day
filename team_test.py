@@ -1,11 +1,16 @@
 import unittest
 import team
 from datetime import date
+import logging, sys
 
+logger = logging.getLogger()
+logger.level = logging.DEBUG
+stream_handler = logging.StreamHandler(sys.stdout)
+logger.addHandler(stream_handler)
 
 class TeamTest(unittest.TestCase):
     testfile = 'config_test.yaml'
-    workdate = date(2016, 1, 25)
+    workdate = date(2016, 1, 25) # Monday / Even week
 
     def test_read_team_from_file(self):
 
@@ -59,4 +64,4 @@ class TeamTest(unittest.TestCase):
                 self.assertTrue(result)
             elif member.name == 'dude':
                 result = team.check_availability(self.workdate, member)
-                self.assertFalse(result)
+                self.assertTrue(result)

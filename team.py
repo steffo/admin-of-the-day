@@ -2,6 +2,7 @@ import yaml
 from datetime import datetime
 from collections import deque
 import calendar
+import logging
 
 
 class Member:
@@ -70,8 +71,9 @@ def check_availability(workdate, member):
     """ Determine if a member is available on a given day """
     available = None
     weekday = calendar.day_name[workdate.weekday()].lower()
-
+    logging.debug("Checking availability for %s on date %s"%(member.name, workdate))
     if member.unavail is not None:
+        logging.debug("Member has unavail %s"%member.unavail)
         # Check default availability
         for k, v in member.unavail.items():
             if k == 'default':
@@ -93,7 +95,7 @@ def check_availability(workdate, member):
 
     if available is None and member.holidays is not None:
         available = _check_holidays(workdate, member)
-    else:
+    elif available is None:
         available = True
 
     return available

@@ -2,6 +2,7 @@ from datetime import date
 from calendar import monthrange
 import argparse
 import team
+import logging
 
 
 # TODO
@@ -11,6 +12,7 @@ import team
 
 
 def create_schedule(team, holidays, workdate):
+    logging.debug("Creating schedule for %s"%workdate)
     schedule = {}
     for i in range(1, monthrange(workdate.year, workdate.month)[1]+1):
         # Loop through days
@@ -62,6 +64,8 @@ def parse_arguments():
 # PROGRAM FLOW
 args = parse_arguments()
 
+logging.basicConfig(level=logging.DEBUG)
+
 workdate = date(args.year, args.month, 1)
 holidays = team.get_holidays(args.inputfile)
 
@@ -69,8 +73,6 @@ print("\nCreating schedule for %s\n\n" % str(workdate))
 # team = member.init_team(workdate)
 myteam = team.get_team(args.inputfile)
 
-print( team )
-print( team.get_team )
 schedule = create_schedule(myteam, holidays, workdate)
 
 print("Assignment per team member\n")
