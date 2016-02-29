@@ -12,7 +12,7 @@ import logging
 
 
 def create_schedule(team, holidays, workdate):
-    logging.debug("Creating schedule for %s"%workdate)
+    logging.debug("Creating schedule for %s" % workdate)
     schedule = {}
     for i in range(1, monthrange(workdate.year, workdate.month)[1]+1):
         # Loop through days
@@ -32,7 +32,7 @@ def get_next_member(workday, myteam):
 
     # Retreive next of list and reshuffle list
     while (valid is False):
-        if len(myteam)<1:
+        if len(myteam) < 1:
             print("No availability")
             return
         try:
@@ -69,12 +69,12 @@ logging.basicConfig(level=logging.DEBUG)
 workdate = date(args.year, args.month, 1)
 holidays = team.get_holidays(args.inputfile)
 
-print("\nCreating schedule for %s\n\n" % str(workdate))
 # team = member.init_team(workdate)
 myteam = team.get_team(args.inputfile)
 
 schedule = create_schedule(myteam, holidays, workdate)
 
+print("\nSchedule for %s\n" % str(workdate))
 print("Assignment per team member\n")
 for m in myteam:
     print("%s %d" % (m.name, m.count))
