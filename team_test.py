@@ -58,7 +58,7 @@ class TeamTest(unittest.TestCase):
                 self.assertFalse(result)
             elif member.name == 'chris':
                 result = team.check_availability(self.workdate, member)
-                self.assertTrue(result)
+                self.assertFalse(result)
             elif member.name == 'debby':
                 result = team.check_availability(self.workdate, member)
                 self.assertTrue(result)

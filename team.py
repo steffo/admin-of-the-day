@@ -71,9 +71,10 @@ def check_availability(workdate, member):
     """ Determine if a member is available on a given day """
     available = None
     weekday = calendar.day_name[workdate.weekday()].lower()
-    logging.debug("Checking availability for %s on date %s"%(member.name, workdate))
+    logging.debug("Checking availability for %s on date %s"
+                  % (member.name, workdate))
     if member.unavail is not None:
-        logging.debug("Member has unavail %s"%member.unavail)
+        logging.debug("Member has unavail %s" % member.unavail)
         # Check default availability
         for k, v in member.unavail.items():
             if k == 'default':
@@ -105,8 +106,12 @@ def _check_holidays(workdate, member):
     """ Check if member has planned holidays """
     available = True
     for day in member.holidays:
-        holiday = datetime.strptime(str(day), "%Y%m%d")
+        holiday = datetime.strptime(str(day), "%Y%m%d").date()
+        logging.debug("Checking for %s holiday %s with workdate %s"
+                      % (member.name, holiday, workdate))
         if workdate == holiday:
+            logging.debug("Member %s is not available due to holiday"
+                          % member.name)
             available = False
             break
 
