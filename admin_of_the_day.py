@@ -9,6 +9,7 @@ import logging
 # - Controleer of member niet vlak achter elkaar werkt
 # - Controleer of aantal dagen evenredig verdeeld is
 # - Gegevens eerdere maanden meenemen
+# - Periode kunnen opgeven
 
 
 def create_schedule(team, holidays, workdate):

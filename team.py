@@ -3,6 +3,7 @@ from datetime import datetime
 from collections import deque
 import calendar
 import logging
+import random
 
 
 class Member:
@@ -44,7 +45,9 @@ def _init_team(doc):
 
         members.append(Member(name, unavail, holidays))
 
-    return members
+        random.shuffle(members)
+
+        return members
 
 
 def get_team(inputfile):
