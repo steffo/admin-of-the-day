@@ -32,6 +32,7 @@ def _init_team(doc):
 
     # First loop over team
     for name, data in doc['team'].items():
+        logging.debug("Found member %s in file" % name )
         unavail = []
         holidays = []
         if 'unavailable' in data:
@@ -45,9 +46,9 @@ def _init_team(doc):
 
         members.append(Member(name, unavail, holidays))
 
-        random.shuffle(members)
+    random.shuffle(members)
 
-        return members
+    return members
 
 
 def get_team(inputfile):
