@@ -56,9 +56,9 @@ def get_next_member(workday, myteam):
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-y", "--year", type=int)
-    parser.add_argument("-m", "--month", type=int)
-    parser.add_argument("-i", "--inputfile")
+    parser.add_argument("year", type=int, help="year e.g. 2016")
+    parser.add_argument("month", type=int, help="month e.g. 03")
+    parser.add_argument("inputfile", help="location to file with configuration")
 
     return parser.parse_args()
 
